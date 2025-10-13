@@ -11,5 +11,3 @@ if scriptURL then
 else
     game.Players.LocalPlayer:Kick("Yo! This game ain't on the list.\nCheck the Discord for whitelisted games, homie.")
 end
-
-https://raw.githubusercontent.com/MajestySkie/Chloe-X/refs/heads/main/Games/Climb%20And%20Jump.lua
