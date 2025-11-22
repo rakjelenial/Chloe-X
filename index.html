@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Script Chloex</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 900px;
+      padding: 16px;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .left-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .copy-btn {
+      border: none;
+      outline: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      background: #22c55e;
+      color: #022c22;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
+      box-shadow: 0 8px 18px rgba(34, 197, 94, 0.35);
+      white-space: nowrap;
+    }
+
+    .copy-btn span.icon {
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(34, 197, 94, 0.45);
+      background: #16a34a;
+    }
+
+    .copy-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+    }
+
+    .code-container {
+      position: relative;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.9);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.8));
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .dot.red {
+      background: #f97373;
+    }
+
+    .dot.yellow {
+      background: #facc15;
+    }
+
+    .dot.green {
+      background: #4ade80;
+    }
+
+    .filename {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-left: 6px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 12px 14px 14px;
+      max-height: 420px;
+      overflow: auto;
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #e5e7eb;
+      background: transparent;
+      tab-size: 2;
+      white-space: pre;
+    }
+
+    code {
+      display: block;
+    }
+
+    .token-tag {
+      color: #60a5fa;
+    }
+
+    .token-attr-name {
+      color: #f97316;
+    }
+
+    .token-attr-value {
+      color: #22c55e;
+    }
+
+    .token-text {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 14px;
+      }
+
+      .copy-btn {
+        padding: 7px 12px;
+        font-size: 11px;
+      }
+
+      pre {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <div class="card-header">
+        <div class="left-header">
+          <div class="title">Kolom Code</div>
+          <div class="subtitle">Klik tombol untuk menyalin seluruh code di bawah</div>
+        </div>
+        <button class="copy-btn" id="copyBtn">
+          <span class="icon">📋</span>
+          <span id="copyText">Salin Code</span>
+        </button>
+      </div>
+      <div class="code-container">
+        <div class="code-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <div class="filename">example.js</div>
+        </div>
+        <pre><code id="codeBlock">
+<span class="token-text">function</span> <span class="token-text">greet</span>() {
+  <span class="token-text">const</span> <span class="token-text">name</span> <span class="token-text">=</span> <span class="token-attr-value">'Erwin'</span>;
+  <span class="token-text">const</span> <span class="token-text">message</span> <span class="token-text">=</span> <span class="token-attr-value">`Halo, ${</span><span class="token-text">name</span><span class="token-attr-value">}!`</span>;
+  <span class="token-text">console</span>.<span class="token-text">log</span>(<span class="token-text">message</span>);
+}
+
+<span class="token-text">greet</span>();</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const copyBtn = document.getElementById("copyBtn");
+    const copyText = document.getElementById("copyText");
+    const codeBlock = document.getElementById("codeBlock");
+
+    function getPlainTextFromCode(element) {
+      const clone = element.cloneNode(true);
+      const walker = document.createTreeWalker(clone, NodeFilter.SHOW_TEXT, null);
+      let text = "";
+      while (walker.nextNode()) {
+        text += walker.currentNode.nodeValue;
+      }
+      return text.replace(/^\n+|\n+$/g, "");
+    }
+
+    async function copyCode() {
+      const text = getPlainTextFromCode(codeBlock);
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const temp = document.createElement("textarea");
+          temp.value = text;
+          temp.style.position = "fixed";
+          temp.style.left = "-9999px";
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+        }
+        copyText.textContent = "Disalin!";
+        copyBtn.disabled = true;
+        setTimeout(() => {
+          copyText.textContent = "Salin Code";
+          copyBtn.disabled = false;
+        }, 1500);
+      } catch (e) {
+        copyText.textContent = "Gagal Menyalin";
+        setTimeout(() => {
+          copyText.textContent = "Salin Code";
+        }, 1500);
+      }
+    }
+
+    copyBtn.addEventListener("click", copyCode);
+  </script>
+</body>
+</html>
